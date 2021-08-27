@@ -31,7 +31,9 @@ async function createOneProject(request, response) {
       response.statusCode = 400;
       response.setHeader('Content-Type', 'application/json');
       response.write(JSON.stringify({ error }));
+      console.log(111);
       response.end();
+      console.log(222);
     }
   });
 }
