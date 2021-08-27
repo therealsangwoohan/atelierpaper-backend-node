@@ -37,14 +37,18 @@ async function createOneProject(request, response) {
 }
 
 async function readAllProjects(request, response) {
-  console.log(111);
-  const results = await pool.query('SELECT * FROM projects');
-  console.log(222);
-
-  response.statusCode = 200;
-  response.setHeader('Content-Type', 'application/json');
-  response.write(JSON.stringify(results.rows));
-  response.end();
+  try {
+    const results = await pool.query('SELECT * FROM projects');
+    response.statusCode = 200;
+    response.setHeader('Content-Type', 'application/json');
+    response.write(JSON.stringify(results.rows));
+    response.end();
+  } catch (error) {
+    response.statusCode = 500;
+    response.setHeader('Content-Type', 'application/json');
+    response.write(JSON.stringify(error));
+    response.end();
+  }
 }
 
 async function readOneProject(request, response, project_id) {
