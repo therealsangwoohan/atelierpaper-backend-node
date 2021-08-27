@@ -1,0 +1,7 @@
+node_modules/
+.vscode/
+documentation/
+playground/
+.env
+.eslintrc.json
+package-lock.json

@@ -1,0 +1,29 @@
+{
+  "name": "atelierpaper-backend-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.958.0",
+    "busboy": "^0.3.1",
+    "dotenv": "^10.0.0",
+    "formidable": "^1.2.2",
+    "mongodb": "^4.0.1",
+    "mongoose": "^5.13.4",
+    "pg": "^8.7.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "nodemon": "^2.0.12"
+  }
+}
