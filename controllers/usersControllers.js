@@ -52,6 +52,7 @@ async function deleteOneUser(request, response) {
   await pool.query(`DELETE FROM users WHERE user_id='${currentUserId}'`);
 
   response.statusCode = 200;
+  response.setHeader('Set-Cookie', 'session_id=logged out; Path=/api/');
   response.setHeader('Content-Type', 'application/json');
   response.write(JSON.stringify({ success_message: `user with user_id=${currentUserId} has been deleted.` }));
   response.end();
