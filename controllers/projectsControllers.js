@@ -37,7 +37,9 @@ async function createOneProject(request, response) {
 }
 
 function readAllProjects(request, response) {
+  console.log(111);
   pool.query('SELECT * FROM projects', (error, results) => {
+    console.log(222);
     if (error) {
       response.statusCode = 500;
       response.setHeader('Content-Type', 'application/json');
