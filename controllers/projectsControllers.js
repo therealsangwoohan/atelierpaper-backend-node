@@ -36,22 +36,19 @@ async function createOneProject(request, response) {
   });
 }
 
-function readAllProjects(request, response) {
-  console.log(111);
-  pool.query('SELECT * FROM projects', (error, results) => {
-    console.log(222);
-    if (error) {
-      response.statusCode = 500;
-      response.setHeader('Content-Type', 'application/json');
-      response.write(JSON.stringify(error));
-      response.end();
-      return;
-    }
+async function readAllProjects(request, response) {
+  try {
+    const results = await pool.query('SELECT * FROM projects');
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
     response.write(JSON.stringify(results.rows));
     response.end();
-  });
+  } catch (error) {
+    response.statusCode = 500;
+    response.setHeader('Content-Type', 'application/json');
+    response.write(JSON.stringify(error));
+    response.end();
+  }
 }
 
 async function readOneProject(request, response, project_id) {
