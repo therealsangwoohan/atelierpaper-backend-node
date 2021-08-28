@@ -43,6 +43,7 @@ function readAllProjects(request, response) {
       response.setHeader('Content-Type', 'application/json');
       response.write(JSON.stringify(error));
       response.end();
+      return;
     }
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
