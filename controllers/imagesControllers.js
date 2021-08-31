@@ -18,7 +18,7 @@ function getProjectImagesUrls(request, response, project_id) {
   s3.listObjects(listObjectsParams, (err, data) => {
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
-    response.write(JSON.stringify(data.Contents.map((content) => content.Key)));
+    response.write(JSON.stringify(data.Contents.map((content) => `http://99.79.46.146/${content.Key}`)));
     response.end();
   });
 }
