@@ -18,7 +18,10 @@ function getProjectImagesUrls(request, response, project_id) {
   s3.listObjects(listObjectsParams, (err, data) => {
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
-    response.write(JSON.stringify(data.Contents.map((content) => content.Key)));
+    for (const content of data.Contents) {
+      console.log(content.Key);
+    }
+    response.write(JSON.stringify('test'));
     response.end();
   });
 }
