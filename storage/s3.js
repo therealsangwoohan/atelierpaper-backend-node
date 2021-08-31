@@ -48,6 +48,7 @@ function getImageStream(project_id, idx) {
 }
 
 module.exports = {
+  s3,
   uploadImage,
   deleteFolderOfImages,
   getImageStream,
