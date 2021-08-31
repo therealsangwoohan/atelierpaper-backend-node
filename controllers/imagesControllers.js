@@ -18,6 +18,7 @@ function getProjectImagesUrls(request, response, project_id) {
   s3.listObjects(listObjectsParams, (err, data) => {
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
+    console.log(data);
     for (const content of data.Contents) {
       console.log(content.Key);
     }
