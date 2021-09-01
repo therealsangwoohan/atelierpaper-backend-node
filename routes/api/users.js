@@ -1,10 +1,15 @@
 const {
-  createOneUser, deleteOneUser,
+  createOneUser, readAllUsers, readOneUser, deleteOneUser,
 } = require('../../controllers/usersControllers');
 
 function usersRoutes(request, response) {
   if (request.method === 'POST' && /\/api\/users\/?$/.test(request.url)) {
     createOneUser(request, response);
+  } else if (request.method === 'GET' && /\/api\/users\/?$/.test(request.url)) {
+    readAllUsers(request, response);
+  } else if (request.method === 'GET' && /\/api\/users\/\w+$/.test(request.url)) {
+    const user_id = request.url.split('/')[3];
+    readOneUser(request, response, user_id);
   } else if (request.method === 'DELETE' && /\/api\/users\/currentuserid$/.test(request.url)) {
     deleteOneUser(request, response);
   } else {

@@ -31,13 +31,30 @@ async function createOneUser(request, response) {
   });
 }
 
-// async function readAllUsers(request, response) {
+async function readAllUsers(request, response) {
+  const results = await pool.query('SELECT user_id, email, password, last_name, first_name, phone_number FROM users');
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'application/json');
+  response.write(JSON.stringify(results.rows));
+  response.end();
+}
 
-// }
+async function readOneUser(request, response, user_id) {
+  const results = await pool.query(`SELECT email, password, last_name, first_name, phone_number FROM users WHERE user_id='${user_id}'`);
 
-// async function readOneUser(request, response, user_id) {
+  if (results.rowCount === 0) {
+    response.statusCode = 400;
+    response.setHeader('Content-Type', 'application/json');
+    response.write(JSON.stringify({ error_message: `There isn't a user with user_id=${user_id}` }));
+    response.end();
+    return;
+  }
 
-// }
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'application/json');
+  response.write(JSON.stringify(results.rows[0]));
+  response.end();
+}
 
 async function deleteOneUser(request, response) {
   // Auth.
@@ -68,5 +85,7 @@ async function deleteOneUser(request, response) {
 
 module.exports = {
   createOneUser,
+  readAllUsers,
+  readOneUser,
   deleteOneUser,
 };
