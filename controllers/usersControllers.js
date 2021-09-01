@@ -15,7 +15,7 @@ async function createOneUser(request, response) {
         return;
       }
 
-      const result = await pool.query(`INSERT INTO users (email, password) VALUES ('${fields.email}', '${fields.password}') RETURNING user_id`);
+      const result = await pool.query(`INSERT INTO users (email, password, last_name, first_name, phone_number) VALUES ('${fields.email}', '${fields.password}', '${fields.last_name}', '${fields.first_name}, '${fields.phone_number}') RETURNING user_id`);
 
       response.statusCode = 200;
       response.setHeader('Content-Type', 'application/json');
@@ -30,6 +30,14 @@ async function createOneUser(request, response) {
     }
   });
 }
+
+// async function readAllUsers(request, response) {
+
+// }
+
+// async function readOneUser(request, response, user_id) {
+
+// }
 
 async function deleteOneUser(request, response) {
   // Auth.
