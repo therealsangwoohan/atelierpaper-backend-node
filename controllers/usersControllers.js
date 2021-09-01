@@ -15,9 +15,7 @@ async function createOneUser(request, response) {
         return;
       }
 
-      console.log(111);
-      const result = await pool.query(`INSERT INTO users (email, password, last_name, first_name, phone_number) VALUES ('${fields.email}', '${fields.password}', '${fields.last_name}', '${fields.first_name}, '${fields.phone_number}') RETURNING user_id`);
-      console.log(222);
+      const result = await pool.query(`INSERT INTO users (email, password, last_name, first_name, phone_number) VALUES ('${fields.email}', '${fields.password}', '${fields.last_name}', '${fields.first_name}', '${fields.phone_number}') RETURNING user_id`);
 
       response.statusCode = 200;
       response.setHeader('Content-Type', 'application/json');
