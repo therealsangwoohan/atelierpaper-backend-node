@@ -11,7 +11,7 @@ async function createOneUser(request, response) {
         response.statusCode = 400;
         response.setHeader('Content-Type', 'application/json');
         response.write(JSON.stringify({
-          error_message: "You don't have the permission to create an account.",
+          error_message: "You don't have the permission to create an account!!",
           specialPermission: fields.specialPermission,
         }));
         response.end();
