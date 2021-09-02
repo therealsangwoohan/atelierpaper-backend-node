@@ -29,8 +29,7 @@ async function createOneSession(request, response) {
 
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
-    response.setHeader('Set-Cookie', `session_id=${session_id}; Path=/`);
-    response.write(JSON.stringify({ success_message: `session ${session_id} has been created.` }));
+    response.write(JSON.stringify({ session_id }));
     response.end();
   });
 }
@@ -49,7 +48,6 @@ async function deleteOneSession(request, response) {
 
   response.statusCode = 200;
   response.setHeader('Content-Type', 'application/json');
-  response.setHeader('Set-Cookie', 'session_id=logged out; Path=/api/');
   response.write(JSON.stringify({ success_message: `session with user_id=${currentUserId} has been deleted.` }));
   response.end();
 }
