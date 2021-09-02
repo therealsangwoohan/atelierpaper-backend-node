@@ -3,7 +3,7 @@ const {
 } = require('../../controllers/sessionsControllers');
 
 function sessionsRoutes(request, response) {
-  if (request.method === 'POST' && /\/api\/sessions\/currentsessionid$/.test(request.url)) {
+  if (request.method === 'GET' && /\/api\/sessions\/currentsessionid$/.test(request.url)) {
     readOneSession(request, response);
   } else if (request.method === 'POST' && /\/api\/sessions\/?$/.test(request.url)) {
     createOneSession(request, response);
