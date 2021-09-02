@@ -10,7 +10,7 @@ async function createOneUser(request, response) {
       if (fields.specialPermission !== process.env.SPECIAL_PERMISSION) {
         response.statusCode = 400;
         response.setHeader('Content-Type', 'application/json');
-        response.write(JSON.stringify({ error: new Error("You don't have the permission to create an account.") }));
+        response.write(JSON.stringify({ error_message: "You don't have the permission to create an account." }));
         response.end();
         return;
       }
@@ -25,7 +25,7 @@ async function createOneUser(request, response) {
     } catch (error) {
       response.statusCode = 400;
       response.setHeader('Content-Type', 'application/json');
-      response.write(JSON.stringify({ error }));
+      response.write(JSON.stringify({ error_message: 'There exists a user with the same email and/or password.' }));
       response.end();
     }
   });
