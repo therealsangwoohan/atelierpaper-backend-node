@@ -18,14 +18,7 @@ async function createOneSession(request, response) {
 
     const session_id = v4();
     const { user_id } = results.rows[0];
-    try {
-      await pool.query(`INSERT INTO sessions (session_id, user_id) VALUES ('${session_id}', '${user_id}')`);
-    } catch (error) {
-      response.statusCode = 400;
-      response.setHeader('Content-Type', 'application/json');
-      response.write(JSON.stringify({ error_message: 'You are already logged in.' }));
-      response.end();
-    }
+    await pool.query(`INSERT INTO sessions (session_id, user_id) VALUES ('${session_id}', '${user_id}')`);
 
     response.statusCode = 200;
     response.setHeader('Content-Type', 'application/json');
