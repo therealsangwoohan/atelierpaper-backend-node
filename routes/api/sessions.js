@@ -1,9 +1,11 @@
 const {
-  createOneSession, deleteOneSession,
+  createOneSession, deleteOneSession, readOneSession,
 } = require('../../controllers/sessionsControllers');
 
 function sessionsRoutes(request, response) {
-  if (request.method === 'POST' && /\/api\/sessions\/?$/.test(request.url)) {
+  if (request.method === 'POST' && /\/api\/sessions\/currentsessionid$/.test(request.url)) {
+    readOneSession(request, response);
+  } else if (request.method === 'POST' && /\/api\/sessions\/?$/.test(request.url)) {
     createOneSession(request, response);
   } else if (request.method === 'DELETE' && /\/api\/sessions\/currentsessionid$/.test(request.url)) {
     deleteOneSession(request, response);

@@ -3,6 +3,14 @@ const formidable = require('formidable');
 const { pool } = require('../database/pool');
 const { getCurrentUserId } = require('../utilities/auth');
 
+async function readOneSession(request, response) {
+  const currentUserId = await getCurrentUserId(request.headers.cookie);
+  response.statusCode = 200;
+  response.setHeader('Content-Type', 'application/json');
+  response.write(JSON.stringify({ currentUserId }));
+  response.end();
+}
+
 async function createOneSession(request, response) {
   const form = formidable({ multiples: true });
   form.parse(request, async (err, fields) => {
@@ -46,6 +54,7 @@ async function deleteOneSession(request, response) {
 }
 
 module.exports = {
+  readOneSession,
   createOneSession,
   deleteOneSession,
 };
