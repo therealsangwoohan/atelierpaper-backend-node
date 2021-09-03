@@ -7,9 +7,7 @@ const { projectsRoutes } = require('./routes/api/projects');
 const { imagesRoutes } = require('./routes/api/images');
 
 const server = http.createServer((request, response) => {
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-  response.setHeader('Access-Control-Allow-Credentials', 'true');
-  response.setHeader('Access-Control-Allow-Headers', 'Cookie');
+  response.setHeader('Access-Control-Allow-Origin', '*');
   if (/\/api\/users(\/.*)?$/.test(request.url)) {
     usersRoutes(request, response);
   } else if (/\/api\/sessions(\/.*)?$/.test(request.url)) {
