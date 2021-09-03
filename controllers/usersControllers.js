@@ -78,6 +78,7 @@ async function deleteOneUser(request, response) {
 
   response.statusCode = 200;
   response.setHeader('Content-Type', 'application/json');
+  response.setHeader('Set-Cookie', 'session_id=deleted; path=/; max-age=-1');
   response.write(JSON.stringify({ success_message: `user with user_id=${currentUserId} has been deleted.` }));
   response.end();
 }

@@ -29,8 +29,8 @@ async function createOneSession(request, response) {
     await pool.query(`INSERT INTO sessions (session_id, user_id) VALUES ('${session_id}', '${user_id}')`);
 
     response.statusCode = 200;
-    response.setHeader('Content-Type', 'application/json');
-    response.write(JSON.stringify({ session_id }));
+    response.setHeader('Set-Cookie', `session_id=${session_id}; Path=/`);
+    response.write(JSON.stringify({ success_message: `session ${session_id} has been created.` }));
     response.end();
   });
 }
@@ -49,6 +49,7 @@ async function deleteOneSession(request, response) {
 
   response.statusCode = 200;
   response.setHeader('Content-Type', 'application/json');
+  response.setHeader('Set-Cookie', 'session_id=deleted; path=/; max-age=-1');
   response.write(JSON.stringify({ success_message: `session with user_id=${currentUserId} has been deleted.` }));
   response.end();
 }
