@@ -29,7 +29,7 @@ async function createOneSession(request, response) {
     await pool.query(`INSERT INTO sessions (session_id, user_id) VALUES ('${session_id}', '${user_id}')`);
 
     response.statusCode = 200;
-    response.setHeader('Set-Cookie', `session_id=${session_id}; Domain=http://localhost:3000 Path=/`);
+    response.setHeader('Set-Cookie', `session_id=${session_id}; Domain=http://127.0.0.1:3000 Path=/`);
     response.write(JSON.stringify({ success_message: `session ${session_id} has been created.` }));
     response.end();
   });
