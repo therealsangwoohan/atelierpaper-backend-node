@@ -8,7 +8,7 @@ const { imagesRoutes } = require('./routes/api/images');
 
 const server = http.createServer((request, response) => {
   response.setHeader('Access-Control-Allow-Credentials', 'true');
-  response.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
   response.setHeader('Access-Control-Allow-Headers', 'Set-Cookie');
   if (/\/api\/users(\/.*)?$/.test(request.url)) {
     usersRoutes(request, response);
