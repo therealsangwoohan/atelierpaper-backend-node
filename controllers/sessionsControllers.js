@@ -30,6 +30,7 @@ async function createOneSession(request, response) {
 
     response.statusCode = 200;
     response.setHeader('Set-Cookie', `session_id=${session_id}; Path=/`);
+    response.setHeader('Content-Type', 'application/json');
     response.write(JSON.stringify({ success_message: `session ${session_id} has been created.` }));
     response.end();
   });
