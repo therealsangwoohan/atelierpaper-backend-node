@@ -12,7 +12,7 @@ function sessionsRoutes(request, response) {
   } else {
     response.statusCode = 404;
     response.setHeader('Content-Type', 'application/json');
-    response.write(JSON.stringify({ message: `${process.env.SERVER_HOST}${request.url} is invalid.` }));
+    response.write(JSON.stringify({ message: `http://localhost:5000${request.url} is invalid.` }));
     response.end();
   }
 }
